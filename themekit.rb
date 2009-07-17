@@ -137,12 +137,14 @@ get '/*' do
   path = "theme.html" if path.length == 0
   
   
+  puts "\n** System styles: #{SYSTEM_STYLESHEET}"
+  
   if path == "system.css"
     file_path = SYSTEM_STYLESHEET
   else
     file_path = File.join(THEME_DIRECTORY, path)
   end
-  
+    
   # Everything *except* theme.html can be statically served.
   return send_file(file_path) unless path == "theme.html"
   
