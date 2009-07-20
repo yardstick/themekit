@@ -16,8 +16,8 @@ Then define the environment variable `YS_SYSTEM_CSS`.  This tells ThemeKit where
     
 _Tip: Add this line to your ~/.profile_
     
-Usage
------
+How to use
+----------
 
 To start ThemeKit, just change into your theme directory and run it:
 
@@ -25,10 +25,25 @@ To start ThemeKit, just change into your theme directory and run it:
     $ themekit
     
 Then head to http://localhost:4567/
+
+To test different **theme variations**, pass in the variations(s) as a space-separated list in the querystring:
+
+    http://localhost:4567/?green people
+    
+or if you've got OCD:
+
+    http://localhost:4567/?green%20people
+    
+These variations will be tacked onto the `<body>` tag:
+
+    <body class="green people">
+
+If no variation is specified, the value `"default"` will be used.
     
 Supported Tags
 --------------
 
+  * {{ theme_variation }}
   * {{ title }}
   * {{ page.title }}
   * {% image image\_data\_id [default image path] %}
