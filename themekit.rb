@@ -138,6 +138,7 @@ get '/*' do
   
   if path == "system.css"
     file_path = SYSTEM_STYLESHEET
+    puts "** Rendering system stylesheet: #{file_path}"
   else
     file_path = File.join(theme_directory, path)
   end
