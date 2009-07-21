@@ -1,0 +1,32 @@
+body, .themeContent { font-size: 13px; }
+
+.container { width: 800px; }
+
+#header { background: #222; padding: 30px 0;}
+#header h2 { float: right; font-size: 15px; color: #fff; font-weight: normal; }
+
+#nav { background: #444; }
+#nav a { color: #999; font-size: 13px; padding: 0px 15px; line-height: 40px; }
+#nav a:hover,
+#nav li.active a { background: #555; color: #fff; }
+#mainNav { float: left; }
+#loginNav { float: right; }
+#loginNav a { font-size: 11px; }
+
+.themeContentContainer { padding-top: 30px; }
+
+.themeContent { color: #777; }
+
+.themeContent h1,
+.themeContent h2,
+.themeContent h3,
+.themeContent h4,
+.themeContent h5,
+.themeContent th { color: #444; }
+.themeContent th { background: #f4f4f4;}
+
+.themeContent h1 { letter-spacing: -1px; margin-bottom: 30px; }
+
+.themeContent img { border: 1px solid #ccc; padding: 1px; }
+
+#footer .container { font-size: 11px; color: #aaa; text-align: center; border-top: 1px solid #eee; padding: 5px 0 15px 0;}

@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="{{ system_stylesheet_path }}" media="screen" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" type="text/css" href="{{ stylesheet_path }}">
+	<title>{{ title }}</title>
+	{% page_meta %}
+</head>
+<body class="themeBody {{ theme_variation }}">
+
+<div id="header"><div class="container">
+  <div id="logo">
+    {% image image_data_id, common/default_image.png %}
+  </div>
+  <h2 id="subheading">{% text text_data_id, Making things more better! %}</h2>
+</div></div>
+  
+<div id="nav"><div class="container">
+  <div id="mainNav" class="horizontal menu">{% menu main %}</div>
+  <div id="loginNav" class="horizontal menu">{% menu account %}</div>
+</div></div>
+  
+<div class="themeContentContainer container">
+  <div class="themeContent">
+    <h1 class="pageTitle">{{ page.title }}</h1>
+    {{ page.content }}
+  </div>
+</div></div>
+
+<div id="footer"><div class="container">
+  {% text text_data_id, Copyright 2009 Yardstick Software %}
+</div></div>
+
+</body>
+</html>

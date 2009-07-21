@@ -1,0 +1,12 @@
+# Give this theme a unique name
+name: Example Theme
+
+# Replace these with the variations actually supported by this theme.
+variations:
+  colors:
+    red: Red
+    green: Green
+    blue: Blue
+  industries:
+    it: IT
+    people: People

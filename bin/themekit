@@ -1,0 +1,32 @@
+#!/usr/bin/env ruby
+
+require "themekit"
+  
+def load_system_stylesheet
+  system_stylesheet = ENV["YS_SYSTEM_CSS"]
+  if system_stylesheet.nil?
+    puts "\n** WHUPS! You need to set the 'YS_SYSTEM_CSS' environment variable."
+    puts "This tells ThemeKit where the Yardstick 'system.css' file is located."
+    puts "Example: export YS_SYSTEM_CSS=\"~/path/to/system.css\"\n\n"
+    Kernel.exit(0)
+  end
+  system_stylesheet
+end
+
+if ARGV.empty?
+  # Run the ThemeKit Sinatra app.
+  theme_directory = Dir.pwd
+  puts "** Starting ThemeKit in #{theme_directory}"
+  ThemeKit::Server.run!({
+    :host => 'localhost',
+    :port => 4567,
+    :system_stylesheet => load_system_stylesheet,
+    :theme_directory => theme_directory
+  })
+else
+  # Create a new theme
+  theme_name = ARGV.first
+  theme = ThemeKit::Theme.new(theme_name, Dir.pwd)
+  theme.create
+  puts "Created #{theme.name} in #{theme.path}"
+end
