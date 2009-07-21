@@ -1,8 +1,6 @@
-require 'rake/gempackagetask' 
-
 spec = Gem::Specification.new do |s| 
   s.name = "themekit" 
-  s.summary = "Ease the pain of creating Yardstick Themes" 
+  s.summary = "A cute lil app that makes designing Yardstick Measure themes a whole lot more enjoyable."
   s.description= File.read(File.join(File.dirname(__FILE__), 'README.md')) 
   s.version = "0.0.1" 
   s.author = "Yardstick Software" 
@@ -15,4 +13,3 @@ spec = Gem::Specification.new do |s|
   s.add_dependency "sinatra"
 end 
 
-Rake::GemPackageTask.new(spec).define 
