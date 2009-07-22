@@ -1,6 +1,6 @@
 Yardstick ThemeKit
 ==================
-A cute lil app that makes desining Yardstick Measure themes a whole lot more enjoyable.
+A tiny app that makes designing Yardstick Measure themes a whole lot more enjoyable.
 
 Setup
 -----

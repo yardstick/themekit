@@ -1,6 +1,6 @@
 spec = Gem::Specification.new do |s| 
   s.name = "themekit" 
-  s.summary = "A cute lil app that makes designing Yardstick Measure themes a whole lot more enjoyable."
+  s.summary = "A tiny app that makes designing Yardstick Measure themes a whole lot more enjoyable."
   s.version = "0.0.2" 
   s.author = "Yardstick Software" 
   s.email = "kyle@yardsticksoftware.com" 
