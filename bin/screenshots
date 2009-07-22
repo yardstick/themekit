@@ -1,0 +1,72 @@
+#!/usr/bin/env python
+
+import os
+import sys
+import yaml
+
+BASE_URL = "http://localhost:4567/"
+YAML_FILE = 'info.yml'
+
+class Variation(object):
+
+  def __init__(self, name, labels):
+    self.name = name
+    self.labels = labels
+
+  def __unicode__(self):
+    return self.filename
+  __repr__ = __unicode__
+  
+  @property
+  def filename(self):
+    return '%s_%s' % (self.name, '_'.join(self.labels))
+
+  @property    
+  def url(self):
+    return "%s?%s" % (BASE_URL, "%20".join(self.labels))
+
+
+def product(*args, **kwds):
+    "Given a list of iterables, calculate the possible combinations."
+    # Based on itertools.product from Python 2.6
+    pools = map(tuple, args) * kwds.get('repeat', 1)
+    result = [[]]
+    for pool in pools:
+        result = [x+[y] for x in result for y in pool]
+    for prod in result:
+        yield tuple(prod)
+
+
+def load_variations(yaml_path):
+  "Loads a list of Variations from the specified yaml file."
+  data = open(yaml_path).read()
+  parsed = yaml.load(data)
+  variation_name = parsed['name'].lower().replace(r' ', '_')
+  variation_categories = []
+  [variation_categories.append(variation_category) for variation_category in parsed.get('variations', {}).values()]
+  variations = []
+  for combo in product(*[category.keys() for category in variation_categories]):
+    variations.append(Variation(variation_name, combo))
+  return variations
+  
+if __name__ == '__main__':
+  if not os.path.exists(YAML_FILE):
+    print "\n** Can't find %s.  This script must be run from the Theme's root directory.\n" % YAML_FILE
+    sys.exit(0)
+  
+  # Determine the directory in which to save the screenshots.
+  # If it already exists, clear it's files and remove the directory.
+  dest = os.path.join(os.getcwd(), 'screenshots')
+  if os.path.isdir(dest):
+    print "** Removing existing screenshots..."
+    for path in os.listdir(dest):
+      os.remove(os.path.join(dest, path))
+    os.rmdir(dest)
+  os.mkdir(dest)
+
+  from subprocess import call
+  variations = load_variations(YAML_FILE)
+  print '** Grabbing screenshots for %s variations...' % len(variations)
+  for v in variations:
+    call(['webkit2png', '--filename=%s' %v.filename, '--dir=%s' % dest, v.url])
+  print 'Screenshots have been saved in %s' % dest
