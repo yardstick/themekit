@@ -21,7 +21,7 @@ class Variation(object):
   
   @property
   def filename(self):
-    return '%s_%s' % (self.name, '_'.join(self.labels))
+    return '_'.join(self.labels)
 
   @property    
   def url(self):
@@ -45,7 +45,9 @@ def load_variations(yaml_path):
   parsed = yaml.load(data)
   variation_name = parsed['name'].lower().replace(r' ', '_')
   variation_categories = []
-  [variation_categories.append(variation_category) for variation_category in parsed.get('variations', {}).values()]
+  variations_dict = parsed.get('variations', {})
+  for category_name in sorted(variations_dict.keys()):
+    variation_categories.append(variations_dict[category_name])
   variations = []
   for combo in product(*[category.keys() for category in variation_categories]):
     variations.append(Variation(variation_name, combo))
