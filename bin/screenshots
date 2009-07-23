@@ -2,6 +2,8 @@
 
 import os
 import sys
+import urllib2
+import Image
 import yaml
 
 BASE_URL = "http://localhost:4567/"
@@ -11,7 +13,7 @@ class Variation(object):
 
   def __init__(self, name, labels):
     self.name = name
-    self.labels = labels
+    self.labels = list(labels)
 
   def __unicode__(self):
     return self.filename
@@ -23,6 +25,8 @@ class Variation(object):
 
   @property    
   def url(self):
+    import random
+    self.labels.append(unicode(int(round(random.random()*1000))))
     return "%s?%s" % (BASE_URL, "%20".join(self.labels))
 
 
@@ -49,9 +53,16 @@ def load_variations(yaml_path):
     variations.append(Variation(variation_name, combo))
   return variations
   
+  
 if __name__ == '__main__':
   if not os.path.exists(YAML_FILE):
     print "\n** Can't find %s.  This script must be run from the Theme's root directory.\n" % YAML_FILE
+    sys.exit(0)
+  
+  try:
+    urllib2.urlopen(BASE_URL)
+  except urllib2.URLError, e:
+    print "\n** Couldn't connect to %s -- are you sure ThemeKit is running?\n" % BASE_URL
     sys.exit(0)
   
   # Determine the directory in which to save the screenshots.
@@ -64,9 +75,21 @@ if __name__ == '__main__':
     os.rmdir(dest)
   os.mkdir(dest)
 
-  from subprocess import call
+  from subprocess import call, PIPE
   variations = load_variations(YAML_FILE)
   print '** Grabbing screenshots for %s variations...' % len(variations)
+  count = 1
   for v in variations:
-    call(['webkit2png', '--filename=%s' %v.filename, '--dir=%s' % dest, v.url])
-  print 'Screenshots have been saved in %s' % dest
+    print "** %s) %s \t(%s)" % (count, " ".join(v.labels), v.url)
+    count += 1
+    call(['webkit2png', '--filename=%s' % v.filename, '--dir=%s' % dest, '--width=1024', '--height=768', '-F', v.url], stdout=open(os.devnull, 'w'))
+    
+  for img_path in os.listdir(dest):
+    full_path = os.path.join(dest, img_path)
+    img = Image.open(full_path)
+    img = img.crop((0,0,1024,768))
+    img.thumbnail((300,300), Image.ANTIALIAS)
+    img.save(full_path.replace("-full", ""), "JPEG", quality=95)
+    os.remove(full_path)
+    
+  print '** Screenshots have been saved in %s' % dest
