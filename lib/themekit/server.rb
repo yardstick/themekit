@@ -37,24 +37,12 @@ module ThemeKit
       
       begin
         html = File.open(file_path).read()
+        return ThemeKit::Theme.render(html, {:variations => variations})
       rescue
         missing = File.join(theme_directory, 'theme.html')
         return "<strong>Theme file doesn't exist:</strong> #{missing}"
       end
-      
-      html.gsub!(/\{\{\s*theme_variation\s*\}\}/, variations)                         # {{ title }}
-      html.gsub!(/\{\{\s*title\s*\}\}/, "Welcome | CompuGlobal Exams")                # {{ title }}
-      html.gsub!(/\{\{\s*page.title\s*\}\}/, "Welcome to my website")                 # {{ page.title }}
-      html.gsub!(/\{%\s*image image_data_id, (\w.*)\s*%\}/, "<img src=\"\\1\" />")    # {% image ... %}
-      html.gsub!(/\{%\s*text text_data_id, (\w.*)\s*%\}/, "\\1")                      # {% text ... %}
-      html.gsub!(/\{%\s*page_meta\s*%\}/, ThemeKit::Data::META_TAGS)                                  # {% page_meta %}
-      html.gsub!(/\{%\s*menu main\s*%\}/, ThemeKit::Data::MAIN_NAV)                                   # {% menu main %}
-      html.gsub!(/\{%\s*menu account\s*%\}/, ThemeKit::Data::USER_NAV)                                # {% menu account %}
-      html.gsub!(/\{\{\s*page.content\s*\}\}/, "#{ThemeKit::Data::DUMMY_HTML}<p>Yardstick ThemeKit: <strong>#{Time.now}</strong></p>")                            # {{ page.content }}
-      html.gsub!(/\{\{\s*system_stylesheet_path\s*\}\}/, "system.css")                # {{ system_stylesheet_path }}
-      html.gsub!(/\{\{\s*stylesheet_path\s*\}\}/, "styles.css")                       # {{ stylesheet_path }}
 
-      return html
     end
 
   end

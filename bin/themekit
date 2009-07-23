@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 
+require "rubygems"
 require "themekit"
   
 def load_system_stylesheet
