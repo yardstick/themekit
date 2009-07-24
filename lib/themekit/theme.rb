@@ -28,11 +28,12 @@ module ThemeKit
         :page_content => "#{ThemeKit::Data::DUMMY_HTML}<p>Yardstick ThemeKit: <strong>#{Time.now}</strong></p>",
         :system_stylesheet_path => "system.css",
         :stylesheet_path => "styles.css",
+        :image_path_prefix => "",
       }.merge(options)
       html.gsub!(/\{\{\s*theme_variation\s*\}\}/, data[:variations])                            # {{ theme_variation }}
       html.gsub!(/\{\{\s*title\s*\}\}/, data[:title])                                           # {{ title }}
       html.gsub!(/\{\{\s*page.title\s*\}\}/, data[:page_title])                                 # {{ page.title }}
-      html.gsub!(/\{%\s*image image_data_id, (\w.*)\s*%\}/, "<img src=\"\\1\" />")              # {% image ... %}
+      html.gsub!(/\{%\s*image image_data_id, (\w.*)\s*%\}/, "<img src=\"#{data[:image_path_prefix]}\\1\" />")              # {% image ... %}
       html.gsub!(/\{%\s*text text_data_id, (\w.*)\s*%\}/, "\\1")                                # {% text ... %}
       html.gsub!(/\{%\s*page_meta\s*%\}/, data[:meta_tags])                                     # {% page_meta %}
       html.gsub!(/\{%\s*menu main\s*%\}/, data[:main_nav])                                      # {% menu main %}
