@@ -8,6 +8,7 @@ begin
     gemspec.homepage = "http://github.com/yardstick/themekit"
     gemspec.authors = ["Yardstick Software"]
     gemspec.has_rdoc = false
+    gemspec.executables = ['themekit']
     gemspec.add_dependency('sinatra', '>= 0.9.4')
   end
 rescue LoadError

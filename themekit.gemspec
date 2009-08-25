@@ -10,9 +10,10 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Yardstick Software"]
   s.date = %q{2009-08-25}
+  s.default_executable = %q{themekit}
   s.description = %q{A tiny app that makes designing Yardstick Measure themes a whole lot more enjoyable.}
   s.email = %q{kyle@yardsticksoftware.com}
-  s.executables = ["screenshots", "themekit", "webkit2png"]
+  s.executables = ["themekit"]
   s.extra_rdoc_files = [
     "README.md"
   ]
