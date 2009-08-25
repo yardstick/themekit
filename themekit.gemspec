@@ -18,6 +18,7 @@ Gem::Specification.new do |s|
   ]
   s.files = [
     "README.md",
+     "Rakefile",
      "VERSION",
      "bin/screenshots",
      "bin/themekit",
@@ -25,10 +26,12 @@ Gem::Specification.new do |s|
      "example_theme/info.yml",
      "example_theme/styles.css",
      "example_theme/theme.html",
+     "github-test.rb",
      "lib/themekit.rb",
      "lib/themekit/data.rb",
      "lib/themekit/server.rb",
      "lib/themekit/theme.rb",
+     "pkg/themekit-0.0.7.gem",
      "themekit.gemspec"
   ]
   s.homepage = %q{http://github.com/yardstick/themekit}
