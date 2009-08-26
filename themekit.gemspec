@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Yardstick Software"]
-  s.date = %q{2009-08-25}
+  s.date = %q{2009-08-26}
   s.default_executable = %q{themekit}
   s.description = %q{A tiny app that makes designing Yardstick Measure themes a whole lot more enjoyable.}
   s.email = %q{kyle@yardsticksoftware.com}
@@ -32,7 +32,6 @@ Gem::Specification.new do |s|
      "lib/themekit/data.rb",
      "lib/themekit/server.rb",
      "lib/themekit/theme.rb",
-     "pkg/themekit-0.0.7.gem",
      "themekit.gemspec"
   ]
   s.homepage = %q{http://github.com/yardstick/themekit}
