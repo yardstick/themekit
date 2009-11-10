@@ -33,8 +33,8 @@ module ThemeKit
       html.gsub!(/\{\{\s*theme_variation\s*\}\}/, data[:variations])                            # {{ theme_variation }}
       html.gsub!(/\{\{\s*title\s*\}\}/, data[:title])                                           # {{ title }}
       html.gsub!(/\{\{\s*page.title\s*\}\}/, data[:page_title])                                 # {{ page.title }}
-      html.gsub!(/\{%\s*image image_data_id, (\w.*)\s*%\}/, "<img src=\"#{data[:media_path]}\\1\" />")              # {% image ... %}
-      html.gsub!(/\{%\s*text text_data_id, (\w.*)\s*%\}/, "\\1")                                # {% text ... %}
+      html.gsub!(/\{%\s*image \w.*, (\w.*)\s*%\}/, "<img src=\"#{data[:media_path]}\\1\" />")              # {% image ... %}
+      html.gsub!(/\{%\s*text \w.*, (\w.*)\s*%\}/, "\\1")                                # {% text ... %}
       html.gsub!(/\{%\s*page_meta\s*%\}/, data[:meta_tags])                                     # {% page_meta %}
       html.gsub!(/\{%\s*menu main\s*%\}/, data[:main_nav])                                      # {% menu main %}
       html.gsub!(/\{%\s*menu account\s*%\}/, data[:user_nav])                                   # {% menu account %}
