@@ -29,6 +29,7 @@ module ThemeKit
         :system_stylesheet_path => "system.css",
         :stylesheet_path => "styles.css",
         :media_path => "",
+        :notice => "This is an example notice.",
       }.merge(options)
       html.gsub!(/\{\{\s*theme_variation\s*\}\}/, data[:variations])                            # {{ theme_variation }}
       html.gsub!(/\{\{\s*title\s*\}\}/, data[:title])                                           # {{ title }}
@@ -41,6 +42,12 @@ module ThemeKit
       html.gsub!(/\{\{\s*page.content\s*\}\}/, data[:page_content])                             # {{ page.content }}
       html.gsub!(/\{\{\s*system_stylesheet_path\s*\}\}/, data[:system_stylesheet_path])         # {{ system_stylesheet_path }}
       html.gsub!(/\{\{\s*stylesheet_path\s*\}\}/, data[:stylesheet_path])                       # {{ stylesheet_path }}
+
+      # Notices
+      html.gsub!(/\{%\s*if notice\s*%\}/, '')
+      html.gsub!(/\{%\s*endif\s*%\}/, '')
+      html.gsub!(/\{\{\s*notice\s*\}\}/, data[:notice])
+      
       html
     end
     

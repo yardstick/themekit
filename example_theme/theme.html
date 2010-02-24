@@ -24,6 +24,9 @@
   
 <div class="themeContentContainer container">
   <div class="themeContent">
+	  {% if notice %}
+        <div class="messages notice">{{ notice }}</div>
+    {% endif %}
     <h1 class="pageTitle">{{ page.title }}</h1>
     {{ page.content }}
   </div>
