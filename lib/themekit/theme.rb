@@ -40,8 +40,8 @@ module ThemeKit
       html.gsub!(/\{%\s*menu main\s*%\}/, data[:main_nav])                                      # {% menu main %}
       html.gsub!(/\{%\s*menu account\s*%\}/, data[:user_nav])                                   # {% menu account %}
       html.gsub!(/\{\{\s*page.content\s*\}\}/, data[:page_content])                             # {{ page.content }}
-      html.gsub!(/\{\{\s*system_stylesheet_path\s*\}\}/, data[:system_stylesheet_path])         # {{ system_stylesheet_path }}
-      html.gsub!(/\{\{\s*stylesheet_path\s*\}\}/, data[:stylesheet_path])                       # {{ stylesheet_path }}
+      html.gsub!(/\{\{\s*system_stylesheet_tag\s*\}\}/, data[:system_stylesheet_tag])         # {{ system_stylesheet_tag }}
+      html.gsub!(/\{\{\s*stylesheet_tag\s*\}\}/, data[:stylesheet_tag])                       # {{ stylesheet_tag }}
 
       # Notices
       html.gsub!(/\{%\s*if notice\s*%\}/, '')
